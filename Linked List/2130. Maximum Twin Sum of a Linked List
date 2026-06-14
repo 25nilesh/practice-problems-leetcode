@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int pairSum(ListNode* head) {
+        // approach 1  using O(n) extra space 
+        // vector<int> arr;
+        // ListNode* dummy=head;
+        // while(dummy!=NULL){
+        //     arr.push_back(dummy->val);
+        //     dummy=dummy->next;
+        // }
+        // int i=0;
+        // int j=arr.size()-1;
+        // int maxPair=INT_MIN;
+        // while(i<j){
+        //     maxPair=max(maxPair,arr[i++]+arr[j--]);
+        // }
+        // return maxPair;
+
+        // approach 2 using O(1) space 
+        ListNode* fast=head;
+        ListNode* slow=head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        ListNode* curr=slow;
+        ListNode* prev=NULL;
+        ListNode* nextNode;
+        while(curr!=NULL){
+            nextNode=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nextNode;
+        }
+
+        int maxPair=INT_MIN;
+        while(prev!=NULL && head!=NULL){
+            maxPair=max(maxPair,prev->val+head->val);
+            prev=prev->next;
+            head=head->next;
+        }
+        return maxPair;
+    }
+};
