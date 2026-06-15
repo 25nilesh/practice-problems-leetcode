@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int dp[100005][3][2];
+    int solve(vector<int>& prices, int i, int k,bool on){
+        if(i>=prices.size()) return 0;
+        if(dp[i][k][on]!=-1) return dp[i][k][on];
+        int ans=0;
+        ans=solve(prices,i+1,k,on);
+        if(on){
+            ans=max(ans,prices[i]+solve(prices,i+1,k-1,false));
+        }
+        else{
+            if(k>0)
+                ans=max(ans,solve(prices,i+1,k,true)-prices[i]);
+        }
+        return dp[i][k][on]=ans;
+    }
+    int maxProfit(vector<int>& prices) {
+        memset(dp,-1, sizeof dp);
+        return solve(prices,0,2,false);
+    }
+};
