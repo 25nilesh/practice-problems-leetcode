@@ -1,0 +1,22 @@
+class Solution {
+public:
+    double angleClock(int hour, int minutes) {
+        /*
+            1 rotation = 360 degree
+            => 12 hr = 360 degree
+            => 1 hr = 360/12 = 30 degree
+
+            also, 
+            60 min=360 degree
+            1 min=360/60 = 6 degree
+
+            therefore,
+            angle between hands of clock = |angle made by hour hand - angle made by minute hand |
+        */
+        double hour_angle = (hour+(minutes/60.0)) * 30.0;
+        double minutes_angle = minutes * 6;
+        cout<<hour_angle<<" "<<minutes_angle;
+        double ans= abs(hour_angle-minutes_angle);
+        return min(ans,360-ans);
+    }
+};
