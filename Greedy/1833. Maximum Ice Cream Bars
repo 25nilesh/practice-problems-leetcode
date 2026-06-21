@@ -11,5 +11,23 @@ public:
             result++;
         }   
         return result;
+
+
+        // approach 2 using O(n) space and O(n) time
+        int n=costs.size();
+        int result=0;
+        vector<int> maxCost(100005,0);
+        for(int cost: costs){
+            maxCost[cost]++;
+        }
+        for(int i=1;i<maxCost.size();i++){
+            if(maxCost[i]==0) continue;
+            if(i>coins) continue;
+            int req=coins/i;
+            int use=min(req,maxCost[i]);
+            result+=use;
+            coins-=i*use;
+        }
+        return result;
     }
 };
