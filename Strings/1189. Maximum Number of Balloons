@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        unordered_map<char,int> mp;
+        for(char ch: text){
+            if(ch=='b' || ch=='a' || ch=='l' || ch=='o' || ch=='n')
+                mp[ch]++;
+        }
+        if(mp.size()<5) return 0;
+        mp['l'] /= 2;
+        mp['o'] /= 2;
+        int minFreq=INT_MAX;
+        for(auto& [ch,freq] : mp){
+            minFreq=min(minFreq,freq);
+        }
+        return minFreq;
+    }
+};
