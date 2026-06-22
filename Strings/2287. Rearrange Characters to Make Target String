@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int rearrangeCharacters(string s, string target) {
+        unordered_map<char,int> freqS;
+        unordered_map<char,int> freqTarget;
+        for(char ch:s){
+            freqS[ch]++;
+        }
+        for(char ch:target){
+            freqTarget[ch]++;
+        }
+        int count=INT_MAX;
+        for(char ch: target){
+            if(freqTarget.find(ch)==freqTarget.end()) return 0;
+            if(freqTarget.find(ch)!=freqTarget.end()){
+                count=min(count,freqS[ch]/freqTarget[ch]);
+            }
+        }
+        return count;
+    }
+};
