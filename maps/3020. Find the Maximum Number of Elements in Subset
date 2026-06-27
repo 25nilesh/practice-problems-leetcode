@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int maximumLength(vector<int>& nums) {
+        int n=nums.size();
+        unordered_map<long long,int> mp;
+        for(int& ele: nums){
+            mp[ele]++;
+        }
+        int max_cnt=1;
+        if(mp[1]%2==0) max_cnt=mp[1]-1;
+        else max_cnt=mp[1];
+        for(auto& ele:mp){
+            if(ele.first==1) continue;
+            long long curr=ele.first;
+            int cnt=0;
+            while(mp.count(curr) && mp[curr]>=2){
+                cnt+=2;
+                if(curr>1e9) break;
+                curr*=curr;
+            }
+            if(mp.count(curr)){
+                cnt++;
+            }
+            else{
+                cnt--;
+            }
+            max_cnt=max(max_cnt,cnt);
+        }
+    return max_cnt;
+    }
+};
