@@ -1,19 +1,13 @@
 class Solution {
 public:
-    int countBits(int n) {
-        int bits = 0;
-        while (n > 0) {
-            bits++;
-            n >>= 1;
-        }
-        return bits;
-    }
     int uniqueXorTriplets(vector<int>& nums) {
-        int n = nums.size();
+        int n=nums.size();
+        if(n==1 || n==2) return n;
 
-        if (n <= 2)
-            return n;
-
-        return 1 << countBits(n);
+        int ans=1;
+        while(ans<=n){
+            ans=ans<<1;
+        }
+        return ans;
     }
 };
