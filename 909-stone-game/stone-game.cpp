@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[21][21];
+    int dp[501][501];
     int solve(vector<int>& nums,int i,int j){
         if(i>j) return 0;
         if(i==j) return nums[i];
@@ -12,6 +12,11 @@ public:
         return dp[i][j]=max(pick_i,pick_j);
     }
     bool stoneGame(vector<int>& piles) {
-        return true;
+        int n=piles.size();
+        memset(dp,-1,sizeof dp);
+        int total_sum=accumulate(piles.begin(),piles.end(),0);
+        int player1=solve(piles,0,n-1);
+        int player2=total_sum-player1;
+        return player1>=player2;
     }
 };
