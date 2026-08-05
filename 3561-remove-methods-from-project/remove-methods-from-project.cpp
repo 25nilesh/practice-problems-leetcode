@@ -8,6 +8,22 @@ public:
             }
         }
     }
+    void bfs(vector<vector<int>> &graph,int node,vector<bool>& suspicious){
+        queue<int> qu;
+        qu.push(node);
+        suspicious[node]=true;
+
+        while(!qu.empty()){
+            int curr=qu.front();
+            qu.pop();
+            for(auto& ngbr: graph[curr]){
+                if(!suspicious[ngbr]){
+                    suspicious[ngbr]=true;
+                    qu.push(ngbr);
+                }
+            }
+        }
+    }
     vector<int> remainingMethods(int n, int k, vector<vector<int>>& invocations) {
         vector<vector<int>> graph(n);
         vector<int> result;
@@ -17,7 +33,8 @@ public:
             graph[u].push_back(v);
         }
         vector<bool> suspicious(n,false);
-        dfs(graph,k,suspicious);
+        // dfs(graph,k,suspicious);
+        bfs(graph,k,suspicious);
         
         for(auto& edge: invocations){
             int u=edge[0];
