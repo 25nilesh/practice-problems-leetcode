@@ -9,13 +9,17 @@ public:
             }
             else break;
         }
-        sort(begin(nums),end(nums));
-        for(int i=0;i<n;i++){
-            if(nums[i]==PrefixSum){
-                PrefixSum++;
-            }else if(nums[i]>PrefixSum) {
-                break;
-            }
+        // sort(begin(nums),end(nums));
+        // for(int i=0;i<n;i++){
+        //     if(nums[i]==PrefixSum){
+        //         PrefixSum++;
+        //     }else if(nums[i]>PrefixSum) {
+        //         break;
+        //     }
+        // }
+        unordered_set<int> st(nums.begin(),nums.end());
+        while(st.count(PrefixSum)){
+            PrefixSum++;
         }
         return PrefixSum;
     }
