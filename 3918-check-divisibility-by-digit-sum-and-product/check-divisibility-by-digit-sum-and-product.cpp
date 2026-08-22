@@ -10,7 +10,6 @@ public:
             digitProd*=digit;
             n/=10;
         }
-        cout<<digitSum<<" "<<digitProd<<endl;
         return num%(digitSum+digitProd)==0;
     }
 };
