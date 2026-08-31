@@ -1,18 +1,40 @@
 class Solution {
 public:
-    void solve(int n,int open,int close,string curr,vector<string>& result){
-        if(close==n){
-            result.push_back(curr);
-            curr="";
+    void solve(vector<string>& result,int open,int close,string str){
+        if(open==0 && close==0){
+            result.push_back(str);
             return;
         }
-        if(open<n) solve(n,open+1,close,curr+'(',result);
-        if(close<open) solve(n,open,close+1,curr+')',result);
+        else if(open==close){
+            string s1=str;
+            s1+='(';
+            solve(result,open-1,close,s1);
+        }
+        else if(open==0){
+            string s1=str;
+            s1+=')';
+            solve(result,open,close-1,s1);
+        }
+        // else if(close==0){
+        //     string s1=str;
+        //     s1+='(';
+        //     solve(result,open-1,close,s1);
+        // }
+        else{
+            string s1=str;
+            string s2=str;
+            s1+='(';
+            s2+=')';
+            solve(result,open-1,close,s1);
+            solve(result,open,close-1,s2);
+        }
     }
     vector<string> generateParenthesis(int n) {
         vector<string> result;
-        string curr="";
-        solve(n,0,0,curr,result);
+        int open=n;
+        int close=n;
+        string str="";
+        solve(result,open,close,str);
         return result;
     }
 };
