@@ -3,17 +3,14 @@ public:
     void solve(vector<string>& result,int open,int close,string str){
         if(open==0 && close==0){
             result.push_back(str);
+            str="";
             return;
         }
         else if(open==close){
-            string s1=str;
-            s1+='(';
-            solve(result,open-1,close,s1);
+            solve(result,open-1,close,str+'(');
         }
         else if(open==0){
-            string s1=str;
-            s1+=')';
-            solve(result,open,close-1,s1);
+            solve(result,open,close-1,str+')');
         }
         // else if(close==0){
         //     string s1=str;
@@ -21,12 +18,8 @@ public:
         //     solve(result,open-1,close,s1);
         // }
         else{
-            string s1=str;
-            string s2=str;
-            s1+='(';
-            s2+=')';
-            solve(result,open-1,close,s1);
-            solve(result,open,close-1,s2);
+            solve(result,open-1,close,str+'(');
+            solve(result,open,close-1,str+')');
         }
     }
     vector<string> generateParenthesis(int n) {
