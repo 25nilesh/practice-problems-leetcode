@@ -1,21 +1,18 @@
 class Solution {
 public:
     vector<vector<int>> result;
-    void solve(int i,vector<int>& nums,int target,vector<int> curr){
+    void solve(int i,vector<int>& nums,int target,vector<int>& curr){
         if(i==nums.size()){
             if(target==0){
                 result.push_back(curr);
             }
-            curr={};
             return;
         }
         if(target==0){
             result.push_back(curr);
-            curr={};
             return;
         }
         if(target<0) {
-            curr={};
             return;
         }
         curr.push_back(nums[i]);
