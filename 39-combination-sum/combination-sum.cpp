@@ -9,6 +9,11 @@ public:
             curr={};
             return;
         }
+        if(target==0){
+            result.push_back(curr);
+            curr={};
+            return;
+        }
         if(target<0) {
             curr={};
             return;
