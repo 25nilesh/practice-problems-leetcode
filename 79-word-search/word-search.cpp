@@ -13,7 +13,7 @@ public:
             if(nr<0 || nc<0 || nr>=m || nc>=n) continue;
             if(board[nr][nc]!=word[i]) continue;
             if(solve(nr,nc,i+1,board,word)){
-                board[r][c]=temp;
+                // board[r][c]=temp;
                 return true;
             }
         }
