@@ -4,9 +4,10 @@ public:
         string ans="";
         int n=s.size();
         stack<char> st;
+        string temp;
         for(char ch : s){
             if(ch==')'){
-                string temp="";
+                temp="";
                 while(st.top()!='('){
                     temp+=st.top();
                     st.pop();
