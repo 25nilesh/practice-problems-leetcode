@@ -6,11 +6,9 @@ public:
         if(cost1+cost2<=costBoth){
             return 1LL * ((1LL * need1*cost1) + (1LL * need2*cost2));
         }else{
-            while(need1>0 && need2>0){
-                ans+=(1LL * costBoth * both);
-                need1-=both;
-                need2-=both;
-            }
+            ans+=(1LL * costBoth * both);
+            need1-=both;
+            need2-=both;
             if(need1>0){
                 ans+= 1LL * need1*(min(cost1,costBoth));
             }
